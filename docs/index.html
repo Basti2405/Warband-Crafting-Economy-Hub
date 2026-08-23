@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Warband Crafting &amp; Economy Hub — Berufe über die ganze Kriegsmeute</title>
-<meta name="description" content="WoW-Addon: Katalog über Rezepte, Berufe, Abklingzeiten und Material aller Charaktere einer Kriegsmeute.">
+<title>Warband Crafting &amp; Economy Hub — Berufe über die ganze Warband</title>
+<meta name="description" content="WoW-Addon: Katalog über Rezepte, Berufe, Cooldowns und Material aller Charaktere einer Warband.">
 <link rel="icon" href="logo.svg" type="image/svg+xml">
 <style>
 /* --------------------------------------------------------------------------
@@ -110,7 +110,7 @@ ul.klar li strong { color: var(--ink); }
 <main>
 <div class="held huelle">
   <span class="marke" lang="de">Gerüst · 0.1.0</span><span class="marke" lang="en">Scaffold · 0.1.0</span>
-  <h1 lang="de">Berufe über die ganze Kriegsmeute</h1><h1 lang="en">Professions across the whole warband</h1>
+  <h1 lang="de">Berufe über die ganze Warband</h1><h1 lang="en">Professions across the whole warband</h1>
   <p class="gross" lang="de">Welcher Charakter kann was — und wo liegt das Material dafür? Zwei Fragen, und danach hört es auf. TSM ist für viele zu überladen; einfache Inventar-Addons bilden keine Berufslogik ab.</p>
   <p class="gross" lang="en">Which character can craft what — and where are the materials? Two questions, and that is where it stops. TSM is too much for many players; simple inventory add-ons do not model professions at all.</p>
   <div class="warnung">
@@ -123,7 +123,7 @@ ul.klar li strong { color: var(--ink); }
   <p lang="de">Mehrere eigenst&auml;ndige Addons in einem Repository. Jedes Modul tr&auml;gt <code>## Dependencies: WarbandForge</code> und l&auml;sst sich <strong>einzeln abw&auml;hlen</strong> &ndash; wer es nicht braucht, hat seinen Quelltext nicht im Speicher.</p>
   <p lang="en">Several standalone add-ons in one repository. Each module declares <code>## Dependencies: WarbandForge</code> and can be <strong>disabled individually</strong> &ndash; what you do not need is not loaded.</p>
   <pre>WarbandForge/                  Kern  – Katalog, Speicher, Modulsystem
-WarbandForge_WorkOrders/       Modul – Handwerksaufträge
+WarbandForge_WorkOrders/       Modul – Work Orders
 WarbandForge_Housing/          Modul – Einrichtung
 WarbandForge_PriceSync/        Modul – Preise und Rentabilität</pre>
   <p lang="de">Der Kern kennt <strong>kein Modul namentlich</strong>. Er ruft nur Haken auf; wer sich angemeldet hat, wird gefragt. Ein Modul, das seine Voraussetzung nicht findet oder in einem Haken wirft, wird stillgelegt &ndash; nicht der Kern.</p>
@@ -138,7 +138,7 @@ WarbandForge_PriceSync/        Modul – Preise und Rentabilität</pre>
     </div>
     <div class="karte">
       <h4 lang="de">Materialprüfung</h4><h4 lang="en">Material check</h4>
-      <p lang="de">Geplant: Taschen, Bank und Kriegsmeuten-Bank live, dazu das, was andere Charaktere beim letzten Login hinterlegt haben.</p><p lang="en">Planned: bags, bank and warband bank live, plus what other characters left behind at their last login.</p>
+      <p lang="de">Geplant: Taschen, Bank und Warband Bank live, dazu das, was andere Charaktere beim letzten Login hinterlegt haben.</p><p lang="en">Planned: bags, bank and warband bank live, plus what other characters left behind at their last login.</p>
     </div>
     <div class="karte">
       <h4 lang="de">Module, die man weglassen kann</h4><h4 lang="en">Modules you can leave out</h4>
@@ -164,11 +164,11 @@ WarbandForge_PriceSync/        Modul – Preise und Rentabilität</pre>
   <ul class="klar">
     <li lang="de"><strong>Es sieht nur, was der Client weiß.</strong> Was auf einem anderen Charakter liegt, weiß es, weil dieser Charakter es beim letzten Login hinterlegt hat — nicht, weil es nachschaut. Ein Twink, der seit Wochen nicht gespielt wurde, hat den Stand von vor Wochen.</li>
     <li lang="en"><strong>It only sees what the client knows.</strong> What sits on another character is known because that character stored it at its last login — not because anything is queried live. An alt untouched for weeks shows the state of weeks ago.</li>
-    <li lang="de"><strong>Die Gildenbank nur, wenn sie offen war.</strong> WoW liefert deren Inhalt nicht im Hintergrund.</li>
+    <li lang="de"><strong>Die Guild Bank nur, wenn sie offen war.</strong> WoW liefert deren Inhalt nicht im Hintergrund.</li>
     <li lang="en"><strong>The guild bank only if it was open.</strong> WoW does not deliver its contents in the background.</li>
     <li lang="de"><strong>Es kauft nichts und stellt nichts her.</strong> Beides sind geschützte Abläufe, in die ein Addon nicht eingreifen darf.</li>
     <li lang="en"><strong>It does not buy or craft.</strong> Both are protected actions an add-on must not drive.</li>
-    <li lang="de"><strong>Es scannt das Auktionshaus nicht.</strong> Das Preis-Modul liest ein vorhandenes Preis-Addon. Ist keines da, meldet es sich ab — statt einen zweiten Scanner mitzubringen.</li>
+    <li lang="de"><strong>Es scannt das Auction House nicht.</strong> Das Preis-Modul liest ein vorhandenes Preis-Addon. Ist keines da, meldet es sich ab — statt einen zweiten Scanner mitzubringen.</li>
     <li lang="en"><strong>It does not scan the auction house.</strong> The price module reads an existing price add-on. If none is present it disables itself, rather than shipping a second scanner.</li>
   </ul>
 </section>
