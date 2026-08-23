@@ -1,0 +1,20 @@
+# Fremdbibliotheken. Sie liegen bewusst NICHT im Repository:
+#   * zum Entwickeln holt sie  tools/libs.sh
+#   * beim Release holt sie der Packager ueber die "externals" in .pkgmeta
+# So steht kein fremder Quelltext in unserer Versionsgeschichte, und ein
+# Update ist ein Aufruf statt eines Commits.
+#
+# Ausgenommen ist embeds.xml - die Datei ist unsere und gibt die
+# Ladereihenfolge vor.
+WarbandForge/Libs/*
+!WarbandForge/Libs/embeds.xml
+
+# Wird von tools/test.sh angelegt: das selbst gebaute Lua 5.1.
+.werkzeuge/
+
+# Baut der Packager.
+.release/
+
+# Arbeitsdateien der Entwicklungsumgebung.
+.idea/
+*.iml

@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="de" data-lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Warband Crafting &amp; Economy Hub — Berufe über die ganze Kriegsmeute</title>
+<meta name="description" content="WoW-Addon: Katalog über Rezepte, Berufe, Abklingzeiten und Material aller Charaktere einer Kriegsmeute.">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<style>
+/* --------------------------------------------------------------------------
+   Warband Forge - Projektseite
+
+   Bewusst ohne Schriften aus dem Netz: Die Seite soll auch dann vollstaendig
+   aussehen, wenn sie aus einem privaten Repository heraus lokal geoeffnet
+   wird - und eine Schriftart, die nachgeladen werden muss, ist eine
+   Abhaengigkeit, die genau dann fehlt.
+   -------------------------------------------------------------------------- */
+:root {
+  --grund:      #12100e;
+  --panel:      #1c1815;
+  --linie:      #33302b;
+  --ink:        #ece6dd;
+  --ink-leise:  #9a9086;
+  --akzent:     #e0a458;
+  --akzent2:    #c97b3c;
+  --display: ui-serif, Georgia, "Times New Roman", serif;
+  --body:    system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono:    ui-monospace, "Cascadia Code", "Consolas", monospace;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0; background: var(--grund); color: var(--ink);
+  font: 400 17px/1.68 var(--body); -webkit-font-smoothing: antialiased;
+}
+/* Sprachumschaltung. Ohne JavaScript bleibt Deutsch stehen. */
+:root[data-lang="de"] [lang="en"] { display: none !important; }
+:root[data-lang="en"] [lang="de"] { display: none !important; }
+a { color: var(--akzent); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--akzent); outline-offset: 3px; }
+.huelle { width: min(1000px, 100% - 3rem); margin-inline: auto; }
+
+.kopf { display: flex; align-items: center; gap: 1rem; padding: 1.5rem 0; border-bottom: 1px solid var(--linie); }
+.kopf img { width: 40px; height: 40px; }
+.wortmarke { font: 700 1.25rem/1 var(--display); letter-spacing: .01em; }
+.sprache { margin-left: auto; display: flex; gap: .25rem; }
+.sprache button {
+  font: 500 .8rem var(--mono); color: var(--ink-leise); background: none;
+  border: 1px solid var(--linie); border-radius: 6px; padding: .3rem .6rem; cursor: pointer;
+}
+.sprache button:hover { color: var(--ink); border-color: var(--akzent); }
+
+.held { padding: 4rem 0 3rem; border-bottom: 1px solid var(--linie); }
+.held h1 { font: 700 clamp(2rem, 5vw, 3rem)/1.1 var(--display); margin: 0 0 1rem; }
+.held p.gross { font-size: 1.2rem; color: var(--ink-leise); max-width: 60ch; margin: 0 0 1.5rem; }
+
+.marke {
+  display: inline-block; font: 500 .75rem/1 var(--mono); letter-spacing: .1em;
+  text-transform: uppercase; color: var(--akzent2);
+  border: 1px solid var(--akzent2); border-radius: 999px; padding: .4rem .8rem; margin-bottom: 1.5rem;
+}
+.warnung {
+  border-left: 3px solid var(--akzent2); background: var(--panel);
+  padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; font-size: .95rem;
+}
+.warnung strong { color: var(--akzent2); }
+
+section { padding: 3rem 0; border-bottom: 1px solid var(--linie); }
+h2 { font: 700 1.6rem/1.2 var(--display); margin: 0 0 1.5rem; }
+h3 { font: 600 1.1rem/1.3 var(--body); margin: 2rem 0 .5rem; color: var(--akzent); }
+
+.raster { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+.karte { background: var(--panel); border: 1px solid var(--linie); border-radius: 10px; padding: 1.25rem; }
+.karte h4 { font: 600 1rem var(--body); margin: 0 0 .5rem; color: var(--akzent); }
+.karte p { margin: 0; font-size: .93rem; color: var(--ink-leise); }
+.karte code { font: .85rem var(--mono); color: var(--akzent2); }
+
+pre {
+  background: var(--panel); border: 1px solid var(--linie); border-radius: 10px;
+  padding: 1.1rem; overflow-x: auto; font: .85rem/1.6 var(--mono); color: var(--ink);
+}
+code { font-family: var(--mono); font-size: .9em; }
+p code, li code { background: var(--panel); padding: .12em .4em; border-radius: 4px; color: var(--akzent2); }
+
+table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: .93rem; }
+th, td { text-align: left; padding: .6rem .8rem; border-bottom: 1px solid var(--linie); vertical-align: top; }
+th { font: 600 .8rem var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--ink-leise); }
+td code { color: var(--akzent2); }
+
+ul.klar { list-style: none; padding: 0; }
+ul.klar li { padding-left: 1.5rem; position: relative; margin-bottom: .75rem; color: var(--ink-leise); }
+ul.klar li::before { content: "\2013"; position: absolute; left: 0; color: var(--akzent); }
+ul.klar li strong { color: var(--ink); }
+
+.fuss { padding: 2.5rem 0 4rem; color: var(--ink-leise); font-size: .9rem; }
+.fuss a { color: var(--ink-leise); }
+
+</style>
+</head>
+<body>
+<header class="kopf huelle">
+  <img src="logo.svg" alt="">
+  <span class="wortmarke">Warband Forge</span>
+  <div class="sprache">
+    <button type="button" data-setzt="de">DE</button>
+    <button type="button" data-setzt="en">EN</button>
+  </div>
+</header>
+<main>
+<div class="held huelle">
+  <span class="marke" lang="de">Gerüst · 0.1.0</span><span class="marke" lang="en">Scaffold · 0.1.0</span>
+  <h1 lang="de">Berufe über die ganze Kriegsmeute</h1><h1 lang="en">Professions across the whole warband</h1>
+  <p class="gross" lang="de">Welcher Charakter kann was — und wo liegt das Material dafür? Zwei Fragen, und danach hört es auf. TSM ist für viele zu überladen; einfache Inventar-Addons bilden keine Berufslogik ab.</p>
+  <p class="gross" lang="en">Which character can craft what — and where are the materials? Two questions, and that is where it stops. TSM is too much for many players; simple inventory add-ons do not model professions at all.</p>
+  <div class="warnung">
+    <p lang="de" style="margin:0"><strong>Stand: Gerüst.</strong> Dies ist noch kein fertiges Addon. Es lädt, es stürzt nicht ab, und es sagt ehrlich, dass es noch nichts erfasst hat. Die Architektur trägt — 22 Logiktests, alle grün. Was gebaut ist und was nicht, steht im Ordner <code>Planung/</code>.</p>
+    <p lang="en" style="margin:0"><strong>Status: Scaffold.</strong> This is not a finished add-on yet. It loads, it does not crash, and it says honestly that it has not recorded anything. The architecture holds — 22 logic tests, all green. What is built and what is not is documented in <code>Planung/</code>.</p>
+  </div>
+</div>
+<section class="huelle">
+  <h2 lang="de">Aufbau</h2><h2 lang="en">Structure</h2>
+  <p lang="de">Mehrere eigenst&auml;ndige Addons in einem Repository. Jedes Modul tr&auml;gt <code>## Dependencies: WarbandForge</code> und l&auml;sst sich <strong>einzeln abw&auml;hlen</strong> &ndash; wer es nicht braucht, hat seinen Quelltext nicht im Speicher.</p>
+  <p lang="en">Several standalone add-ons in one repository. Each module declares <code>## Dependencies: WarbandForge</code> and can be <strong>disabled individually</strong> &ndash; what you do not need is not loaded.</p>
+  <pre>WarbandForge/                  Kern  – Katalog, Speicher, Modulsystem
+WarbandForge_WorkOrders/       Modul – Handwerksaufträge
+WarbandForge_Housing/          Modul – Einrichtung
+WarbandForge_PriceSync/        Modul – Preise und Rentabilität</pre>
+  <p lang="de">Der Kern kennt <strong>kein Modul namentlich</strong>. Er ruft nur Haken auf; wer sich angemeldet hat, wird gefragt. Ein Modul, das seine Voraussetzung nicht findet oder in einem Haken wirft, wird stillgelegt &ndash; nicht der Kern.</p>
+  <p lang="en">The core knows <strong>no module by name</strong>. It only calls hooks. A module that fails its check, or throws inside a hook, is disabled &ndash; the core is not.</p>
+</section>
+<section class="huelle">
+  <h2 lang="de">Was es tut</h2><h2 lang="en">What it does</h2>
+  <div class="raster">
+    <div class="karte">
+      <h4 lang="de">Katalog über alle Charaktere</h4><h4 lang="en">Catalogue across characters</h4>
+      <p lang="de">Berufe, Fertigkeitsstand und (geplant) Rezepte je Charakter. Jeder Abschnitt trägt einen Zeitstempel — ein alter Stand darf nicht aussehen wie ein aktueller.</p><p lang="en">Professions, skill level and (planned) recipes per character. Every entry carries a timestamp — a stale reading must not look current.</p>
+    </div>
+    <div class="karte">
+      <h4 lang="de">Materialprüfung</h4><h4 lang="en">Material check</h4>
+      <p lang="de">Geplant: Taschen, Bank und Kriegsmeuten-Bank live, dazu das, was andere Charaktere beim letzten Login hinterlegt haben.</p><p lang="en">Planned: bags, bank and warband bank live, plus what other characters left behind at their last login.</p>
+    </div>
+    <div class="karte">
+      <h4 lang="de">Module, die man weglassen kann</h4><h4 lang="en">Modules you can leave out</h4>
+      <p lang="de">Aufträge, Einrichtung und Preise sind eigene Addons mit <code>## Dependencies</code>. Der Kern kennt keines davon namentlich.</p><p lang="en">Work orders, housing and prices are separate add-ons using <code>## Dependencies</code>. The core knows none of them by name.</p>
+    </div>
+  </div>
+</section>
+<section class="huelle">
+  <h2 lang="de">Befehle</h2><h2 lang="en">Commands</h2>
+  <table><thead><tr>
+    <th lang="de">Befehl</th><th lang="en">Command</th>
+    <th lang="de">Wirkung</th><th lang="en">Effect</th>
+  </tr></thead><tbody>
+    <tr><td><code>/wf</code></td><td lang="de">Fenster anzeigen oder verstecken</td><td lang="en">Show or hide the window</td></tr>
+    <tr><td><code>/wf doctor</code></td><td lang="de">Selbstdiagnose – bei Problemen zuerst</td><td lang="en">Self-check – start here when something is wrong</td></tr>
+    <tr><td><code>/wf help</code></td><td lang="de">alle Befehle</td><td lang="en">all commands</td></tr>
+  </tbody></table>
+</section>
+<section class="huelle">
+  <h2 lang="de">Was es <em>nicht</em> kann</h2><h2 lang="en">What it can<em>not</em> do</h2>
+  <p lang="de">Ehrlichkeit an dieser Stelle ist wichtiger als eine vollst&auml;ndig aussehende Funktionsliste.</p>
+  <p lang="en">Being honest here matters more than a feature list that looks complete.</p>
+  <ul class="klar">
+    <li lang="de"><strong>Es sieht nur, was der Client weiß.</strong> Was auf einem anderen Charakter liegt, weiß es, weil dieser Charakter es beim letzten Login hinterlegt hat — nicht, weil es nachschaut. Ein Twink, der seit Wochen nicht gespielt wurde, hat den Stand von vor Wochen.</li>
+    <li lang="en"><strong>It only sees what the client knows.</strong> What sits on another character is known because that character stored it at its last login — not because anything is queried live. An alt untouched for weeks shows the state of weeks ago.</li>
+    <li lang="de"><strong>Die Gildenbank nur, wenn sie offen war.</strong> WoW liefert deren Inhalt nicht im Hintergrund.</li>
+    <li lang="en"><strong>The guild bank only if it was open.</strong> WoW does not deliver its contents in the background.</li>
+    <li lang="de"><strong>Es kauft nichts und stellt nichts her.</strong> Beides sind geschützte Abläufe, in die ein Addon nicht eingreifen darf.</li>
+    <li lang="en"><strong>It does not buy or craft.</strong> Both are protected actions an add-on must not drive.</li>
+    <li lang="de"><strong>Es scannt das Auktionshaus nicht.</strong> Das Preis-Modul liest ein vorhandenes Preis-Addon. Ist keines da, meldet es sich ab — statt einen zweiten Scanner mitzubringen.</li>
+    <li lang="en"><strong>It does not scan the auction house.</strong> The price module reads an existing price add-on. If none is present it disables itself, rather than shipping a second scanner.</li>
+  </ul>
+</section>
+<section class="huelle">
+  <h2 lang="de">Entwickeln</h2><h2 lang="en">Development</h2>
+  <pre>tools/junction.cmd    <span style="color:var(--ink-leise)"># verbindet alle Addon-Ordner mit dem AddOns-Verzeichnis</span>
+./tools/test.sh       <span style="color:var(--ink-leise)"># Syntax, .toc-Abgleich und Logiktests (baut sich Lua 5.1)</span></pre>
+  <p lang="de">Die Tests laufen <strong>ohne WoW</strong>: Die Spielumgebung wird so weit nachgebaut, wie der Kern sie anfasst. Geprüft wird zusätzlich, ob jede in der <code>.toc</code> eingetragene Datei wirklich existiert — eine fehlende lädt WoW stillschweigend nicht.</p>
+  <p lang="en">Tests run <strong>without WoW</strong>: the game environment is stubbed out as far as the core touches it. The run also verifies that every file listed in the <code>.toc</code> actually exists — WoW silently skips missing ones.</p>
+</section>
+<footer class="fuss huelle">
+  <p lang="de">MIT-Lizenz &middot; Basti2405 &middot; Diese Seite geh&ouml;rt zum Repository und wird aus <code>docs/</code> ausgeliefert.</p>
+  <p lang="en">MIT licence &middot; Basti2405 &middot; This page lives in the repository and is served from <code>docs/</code>.</p>
+</footer>
+</main>
+<script>
+// Sprachumschalter. Ohne JavaScript bleibt die Seite auf Deutsch - sie ist
+// dann vollstaendig lesbar, nur eben einsprachig.
+document.querySelectorAll('.sprache button').forEach(function (knopf) {
+  knopf.addEventListener('click', function () {
+    document.documentElement.setAttribute('data-lang', knopf.dataset.setzt);
+  });
+});
+</script>
+</body>
+</html>

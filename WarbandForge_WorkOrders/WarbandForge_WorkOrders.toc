@@ -1,0 +1,31 @@
+## Interface: 120100
+
+## Title: Warband Forge |cff8080ff[Work Orders]|r
+## Notes: Dashboard for guild and personal crafting orders, with material shortfall and shopping list.
+## Notes-deDE: Uebersicht ueber Gilden- und persoenliche Handwerksauftraege, mit Materialdefizit und Einkaufsliste.
+## Author: Basti2405
+## Version: 0.1.0
+## IconTexture: Interface\Icons\INV_Scroll_11
+
+# ---------------------------------------------------------------------------
+# Der eigentliche Punkt dieser Datei.
+# ---------------------------------------------------------------------------
+# "Dependencies" ist eine HARTE Voraussetzung: Fehlt WarbandForge, laedt WoW
+# dieses Addon gar nicht erst und sagt dem Spieler auch, warum. Genau das ist
+# gewollt - ein Modul ohne seinen Kern hat keine Daten, auf denen es arbeiten
+# koennte, und soll deshalb nicht mit halbem Gesicht dastehen.
+#
+# Nebenwirkung, auf die wir uns verlassen: WoW laedt Abhaengigkeiten ZUERST.
+# Wenn diese Datei laeuft, steht  WarbandForge.Module  garantiert schon.
+## Dependencies: WarbandForge
+
+# Kein eigener SavedVariables-Block. Das Modul schreibt in den Speicher des
+# Kerns (WarbandForgeDB.module.workorders) - sonst haette der Spieler zwei
+# Dateien, die auseinanderlaufen koennen.
+
+## X-License: MIT
+## X-Category: Professions
+
+Locales\enUS.lua
+Locales\deDE.lua
+Modul.lua

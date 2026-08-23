@@ -1,0 +1,64 @@
+## Interface: 120100
+# Passt zu Live-Patch 12.1.0 (Midnight).
+# Bei neuem Patch: aktuelle Nummer aus einem vorhandenen Addon (dessen .toc)
+# uebernehmen, dann ist der "veraltet"-Hinweis im Addon-Menue weg.
+
+## Title: Warband Forge
+## Notes: Central catalogue of professions, recipes, cooldowns and materials across the whole warband.
+## Notes-deDE: Zentraler Katalog ueber Berufe, Rezepte, Abklingzeiten und Materialien der gesamten Kriegsmeute.
+## Author: Basti2405
+## Version: 0.1.0
+## IconTexture: Interface\Icons\Trade_BlackSmithing
+
+# Warband-weit: EIN Speicher fuer alle Charaktere des Accounts. Genau das ist
+# der Kern des Addons - ein Katalog, der nur den eingeloggten Charakter kennt,
+# loest das Problem nicht. Deshalb SavedVariables (account-weit) und NICHT
+# SavedVariablesPerCharacter.
+## SavedVariables: WarbandForgeDB
+
+## X-License: MIT
+## X-Category: Professions
+# ## X-Curse-Project-ID:
+# ## X-Wago-ID:
+# ## X-WoWI-ID:
+
+# ---------------------------------------------------------------------------
+# Ladereihenfolge: Bibliotheken, Sprachen, Bruecke, Daten, Logik, Oberflaeche,
+# Core. Grund: Core startet beim Login alles auf - da muss der Rest schon
+# dastehen.
+# ---------------------------------------------------------------------------
+
+# Fremdbibliotheken: bewusst KEINE. Was dieses Geruest tut, tut ein
+# CreateFrame("Frame") mit RegisterEvent genauso - und eine Bibliothek, die
+# man nicht benutzt, ist trotzdem Quelltext, den man ausliefert und der bei
+# einem Patch brechen kann. Sobald eine gebraucht wird (AceDB fuer Profile,
+# AceGUI fuer ein groesseres Fenster), kommt sie ueber tools/libs.sh und die
+# "externals" in .pkgmeta dazu - und dann steht hier  Libs\embeds.xml .
+
+# Bruecke zu den WoW-Schnittstellen. Muss ganz vorne stehen - und zwar VOR
+# den Sprachdateien. Grund: Diese Datei legt den globalen Namensraum an, und
+# alles Weitere haengt seine Werte dort hinein. Das ist der Unterschied zu
+# einem Addon aus einem einzigen Ordner, wo WoW jeder Datei die Addon-Tabelle
+# von sich aus mitgibt; unsere Module sind eigene Addons und bekommen genau
+# das nicht. Steht Kompat spaeter, laeuft die erste Sprachdatei in ein nil.
+Logik\Kompat.lua
+
+# Sprachdateien. enUS ist die Grundlage und muss vollstaendig sein.
+Locales\enUS.lua
+Locales\deDE.lua
+
+# Speicher. Legt die Struktur an, bevor irgendwer hineinschreibt.
+Logik\Speicher.lua
+
+# Modulsystem. Muss VOR den Modul-Addons geladen sein - die melden sich beim
+# Laden hier an. Dass die Reihenfolge stimmt, sichert  ## Dependencies  in der
+# .toc jedes Moduls: WoW laedt Abhaengigkeiten zuerst.
+Logik\Modulsystem.lua
+
+# Selbstdiagnose - beantwortet  /wf doctor . Braucht alles darueber.
+Logik\Diagnose.lua
+
+# Oberflaeche.
+UI\Fenster.lua
+
+Core.lua

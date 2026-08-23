@@ -1,0 +1,23 @@
+## Interface: 120100
+
+## Title: Warband Forge |cff8080ff[Housing]|r
+## Notes: Tracker for housing decor: recipes, materials and what is already placed.
+## Notes-deDE: Tracker fuer Einrichtung: Rezepte, Rohstoffe und was bereits aufgestellt ist.
+## Author: Basti2405
+## Version: 0.1.0
+## IconTexture: Interface\Icons\INV_Misc_Villager
+
+# Harte Voraussetzung, siehe WarbandForge_WorkOrders.toc.
+## Dependencies: WarbandForge
+
+# Housing kam mit Midnight. Ob die noetigen Schnittstellen im laufenden Client
+# ueberhaupt vorhanden sind, prueft das Modul selbst in Pruefen() - eine
+# fehlende API ist ein Grund, sich still abzumelden, kein Grund fuer einen
+# Fehler im Chat.
+
+## X-License: MIT
+## X-Category: Professions
+
+Locales\enUS.lua
+Locales\deDE.lua
+Modul.lua

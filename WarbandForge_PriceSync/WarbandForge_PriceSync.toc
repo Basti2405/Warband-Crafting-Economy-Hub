@@ -1,0 +1,24 @@
+## Interface: 120100
+
+## Title: Warband Forge |cff8080ff[Price Sync]|r
+## Notes: Reads auction house scan data from an installed price addon and adds profitability to recipes.
+## Notes-deDE: Liest Auktionshaus-Preise aus einem vorhandenen Preis-Addon und rechnet die Rentabilitaet je Rezept aus.
+## Author: Basti2405
+## Version: 0.1.0
+## IconTexture: Interface\Icons\INV_Misc_Coin_01
+
+# Harte Voraussetzung: unser eigener Kern.
+## Dependencies: WarbandForge
+
+# WEICHE Voraussetzung: das Preis-Addon. "OptionalDeps" sorgt nur dafuer, dass
+# es VOR uns laedt, falls es ueberhaupt da ist. Fehlt es, meldet sich das
+# Modul in Pruefen() still ab - wir bauen keinen eigenen Auktionsscanner, das
+# ist ein eigenes Programm und nicht unsere Aufgabe.
+## OptionalDeps: TradeSkillMaster, Auctionator, RECrystallize
+
+## X-License: MIT
+## X-Category: Professions
+
+Locales\enUS.lua
+Locales\deDE.lua
+Modul.lua

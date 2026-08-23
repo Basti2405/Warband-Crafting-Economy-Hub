@@ -1,0 +1,66 @@
+# .pkgmeta - Bauanleitung fuer den BigWigs-Packager
+#
+# Ohne diese Datei landet das GESAMTE Repository im Auslieferungspaket -
+# einschliesslich der Werkzeuge, der Tests, der Planung und (falls
+# vorhanden) des gebauten Lua unter .werkzeuge/ mit seinen Binaerdateien.
+# Das ist bei CurseForge ein sicherer Ablehnungsgrund.
+#
+# Was hier NICHT steht, kommt mit ins Paket. README, LICENSE und CHANGELOG
+# bleiben deshalb bewusst drin: Sie gehoeren zu dem, was der Spieler bekommt.
+#
+# Ausprobieren, ohne irgendetwas hochzuladen:
+#   curl -s https://raw.githubusercontent.com/BigWigsMods/packager/master/release.sh | bash -s -- -d -o
+# Danach in .release/ nachsehen, was tatsaechlich im Paket liegt.
+
+package-as: WarbandForge
+
+# ---------------------------------------------------------------------------
+# MEHRERE ADDONS IN EINEM PAKET
+# ---------------------------------------------------------------------------
+# Dieses Repository enthaelt den Kern UND die Module als je eigenen
+# Addon-Ordner. Im fertigen Zip muessen sie NEBENEINANDER liegen, nicht
+# ineinander - sonst findet WoW die Module nicht.
+#
+# "package-as" legt zunaechst alles unter WarbandForge/ ab; "move-folders"
+# holt die Modul-Ordner dort wieder heraus.
+#
+# ZU PRUEFEN beim ersten Release: einmal mit  -d -o  bauen und in
+# .release/ nachsehen, ob wirklich 4 Ordner
+# nebeneinander liegen. Diese Datei ist bisher nur aufgeschrieben, nicht
+# durchgelaufen - und eine Bauanleitung, die man nie gebaut hat, ist eine
+# Vermutung.
+move-folders:
+    WarbandForge/WarbandForge_WorkOrders: WarbandForge_WorkOrders
+    WarbandForge/WarbandForge_Housing: WarbandForge_Housing
+    WarbandForge/WarbandForge_PriceSync: WarbandForge_PriceSync
+
+# Der Changelog kommt aus der gepflegten Datei statt aus den Commit-Texten.
+manual-changelog:
+    filename: CHANGELOG.md
+    markup-type: markdown
+
+# ---------------------------------------------------------------------------
+# Fremdbibliotheken
+# ---------------------------------------------------------------------------
+# Bewusst KEINE. Was der Kern tut, tut ein CreateFrame("Frame") mit
+# RegisterEvent genauso - und eine Bibliothek, die man nicht benutzt, ist
+# trotzdem Quelltext, den man ausliefert und der bei einem Patch brechen
+# kann. Sobald eine gebraucht wird, kommt hier ein "externals"-Block dazu.
+
+ignore:
+    # Entwicklungswerkzeuge und alles, was nur im Repository Sinn ergibt.
+    - .github
+    - .werkzeuge
+    - tools
+    - Planung
+    - .luacheckrc
+    - .editorconfig
+    - .gitignore
+    - .pkgmeta
+
+    # Die Tests jedes Addons.
+    - WarbandForge/Tests
+
+    # Die Projektseite. Sie wird aus docs/ ausgeliefert und hat im
+    # AddOns-Ordner des Spielers nichts verloren.
+    - docs
