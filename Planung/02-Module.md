@@ -6,7 +6,7 @@ Was fehlt, ist die Fachlogik — und die steht hier.
 
 ---
 
-## WorkOrders — Handwerksaufträge
+## WorkOrders — Work Orders
 
 **Zweck.** Eine Übersicht über Gilden- und persönliche Aufträge, mit
 Materialdefizit und daraus abgeleiteter Einkaufsliste.
@@ -34,7 +34,7 @@ nicht die Rechnung.
 
 ## Housing — Einrichtung
 
-**Zweck.** Tracker für Einrichtungsgegenstände: welche Rezepte sind bekannt,
+**Zweck.** Tracker für Housing-Gegenstände: welche Rezepte sind bekannt,
 welche Rohstoffe fehlen, was steht schon.
 
 **Datenquelle.** `C_Housing` (mit Midnight gekommen).

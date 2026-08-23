@@ -12,7 +12,7 @@ Deshalb liegt hier nicht ein Addon mit Schaltern, sondern **vier Addons**:
 
 ```
 WarbandForge/                  Kern  – Katalog, Speicher, Modulsystem, Fenster
-WarbandForge_WorkOrders/       Modul – Handwerksaufträge
+WarbandForge_WorkOrders/       Modul – Work Orders
 WarbandForge_Housing/          Modul – Einrichtung
 WarbandForge_PriceSync/        Modul – Preise und Rentabilität
 ```
@@ -89,9 +89,9 @@ Funktionsliste:
   liegt, weiß er, weil dieser Charakter es beim letzten Login hinterlegt
   hat — nicht, weil er es gerade nachschaut. Wer einen Twink seit Wochen
   nicht gespielt hat, bekommt dessen Stand von vor Wochen.
-- **Die Gildenbank ist nur zu sehen, wenn sie offen war.** WoW liefert
-  Gildenbankinhalte nicht im Hintergrund.
-- **Er kauft nichts und stellt nichts her.** Handeln im Auktionshaus und
+- **Die Guild Bank ist nur zu sehen, wenn sie offen war.** WoW liefert
+  Guild Bankinhalte nicht im Hintergrund.
+- **Er kauft nichts und stellt nichts her.** Handeln im Auction House und
   Herstellen sind geschützte Abläufe.
 
 Diese drei Punkte gehören in die README, damit niemand etwas erwartet, das

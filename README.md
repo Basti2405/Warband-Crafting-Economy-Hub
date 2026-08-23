@@ -3,6 +3,8 @@
 **Ein Katalog über die ganze Warband: welcher Charakter kann was, und wo
 liegt das Material dafür.**
 
+*[English version](README.en.md)*
+
 > Der Kern heißt im AddOns-Verzeichnis **WarbandForge**, der Slash-Befehl ist
 > `/wf`. WoW verlangt, dass Ordner- und `.toc`-Name identisch sind, und
 > verträgt darin weder `&` noch Klammern.

@@ -19,8 +19,8 @@ leeren. Deshalb wird bis zu viermal in Abständen versucht.
 | Gelernte Rezepte | `C_TradeSkillUI.GetAllRecipeIDs()` | Nur verfügbar, während das Berufsfenster offen war. Deshalb: bei `TRADE_SKILL_SHOW` erfassen, nicht beim Login. |
 | Fertigkeitsstand | `GetProfessionInfo` | Steht bereits zur Verfügung. |
 | Wissenspunkte | `C_ProfSpecs` | Ungeprüft, ob offen abfragbar. **Vor der Umsetzung testen.** |
-| Abklingzeiten | `C_TradeSkillUI.GetRecipeCooldown` | Transmutationen, wöchentliche Aufträge. |
-| Taschen und Bank | `C_Item.GetItemCount(id, true, false, true, true)` | Kriegsmeuten-Bank ist im letzten Parameter enthalten. |
+| Cooldowns | `C_TradeSkillUI.GetRecipeCooldown` | Transmutationen, wöchentliche Aufträge. |
+| Taschen und Bank | `C_Item.GetItemCount(id, true, false, true, true)` | Warband Bank ist im letzten Parameter enthalten. |
 
 **Fallstrick, der eingeplant gehört:** Rezeptlisten sind lang. Alle IDs für
 alle Charaktere roh zu speichern, lässt die `SavedVariables` schnell auf
@@ -36,9 +36,9 @@ liegt es?*
 Gerechnet wird gegen die Summe aus:
 
 1. Taschen und Bank des **eingeloggten** Charakters (live abfragbar),
-2. Kriegsmeuten-Bank (live, sofern der Client sie zwischengespeichert hat),
+2. Warband Bank (live, sofern der Client sie zwischengespeichert hat),
 3. dem, was **andere** Charaktere beim letzten Login hinterlegt haben,
-4. der Gildenbank — **nur wenn sie in dieser Sitzung offen war**.
+4. der Guild Bank — **nur wenn sie in dieser Sitzung offen war**.
 
 Punkt 3 und 4 sind ausdrücklich als *Stand von damals* zu kennzeichnen. Eine
 Zahl, die aussieht wie eine aktuelle, aber Wochen alt ist, ist schlimmer als
