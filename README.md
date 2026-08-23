@@ -1,6 +1,6 @@
 # Warband Crafting & Economy Hub
 
-**Ein Katalog über die ganze Kriegsmeute: welcher Charakter kann was, und wo
+**Ein Katalog über die ganze Warband: welcher Charakter kann was, und wo
 liegt das Material dafür.**
 
 > Der Kern heißt im AddOns-Verzeichnis **WarbandForge**, der Slash-Befehl ist
@@ -32,8 +32,8 @@ Vier eigenständige Addons in einem Repository:
 
 ```
 WarbandForge/                  Kern
-WarbandForge_WorkOrders/       Modul – Handwerksaufträge
-WarbandForge_Housing/          Modul – Einrichtung
+WarbandForge_WorkOrders/       Modul – Work Orders
+WarbandForge_Housing/          Modul – Housing
 WarbandForge_PriceSync/        Modul – Preise
 ```
 
@@ -56,10 +56,10 @@ Der Kern kennt kein Modul namentlich.
   hat — nicht, weil es nachschaut. Ein Twink, der seit Wochen nicht
   gespielt wurde, hat den Stand von vor Wochen. Deshalb steht an jeder
   Angabe, wann sie erhoben wurde.
-- **Die Gildenbank sieht es nur, wenn sie offen war.** WoW liefert deren
+- **Die Guild Bank sieht es nur, wenn sie offen war.** WoW liefert deren
   Inhalt nicht im Hintergrund.
 - **Es kauft nichts und stellt nichts her.** Beides sind geschützte Abläufe.
-- **Es scannt das Auktionshaus nicht.** Das Preis-Modul liest ein
+- **Es scannt das Auction House nicht.** Das Preis-Modul liest ein
   vorhandenes Preis-Addon; ist keines da, meldet es sich ab.
 
 ## Entwickeln
