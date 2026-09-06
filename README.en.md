@@ -73,3 +73,7 @@ tools/junction.cmd    # links every add-on folder into your AddOns directory
 ## Licence
 
 MIT, see [LICENSE](LICENSE).
+
+---
+
+Addon by **Euta (euta-Antonidas)** · Discord: https://discord.gg/xeyHu7DdC

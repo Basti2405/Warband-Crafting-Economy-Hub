@@ -74,3 +74,7 @@ tools/junction.cmd    # verbindet alle Addon-Ordner mit dem AddOns-Verzeichnis
 ## Lizenz
 
 MIT, siehe [LICENSE](LICENSE).
+
+---
+
+Addon von **Euta (euta-Antonidas)** · Discord: https://discord.gg/xeyHu7DdC

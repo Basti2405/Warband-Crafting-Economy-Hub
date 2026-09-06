@@ -3,7 +3,8 @@
 ## Title: Warband Forge |cff8080ff[Housing]|r
 ## Notes: Tracker for housing decor: recipes, materials and what is already placed.
 ## Notes-deDE: Tracker fuer Einrichtung: Rezepte, Rohstoffe und was bereits aufgestellt ist.
-## Author: Basti2405
+## Author: Euta (euta-Antonidas)
+## X-Discord: https://discord.gg/xeyHu7DdC
 ## Version: 0.1.0
 ## IconTexture: Interface\Icons\INV_Misc_Villager
 

@@ -6,7 +6,8 @@
 ## Title: Warband Forge
 ## Notes: Central catalogue of professions, recipes, cooldowns and materials across the whole warband.
 ## Notes-deDE: Zentraler Katalog ueber Berufe, Rezepte, Abklingzeiten und Materialien der gesamten Kriegsmeute.
-## Author: Basti2405
+## Author: Euta (euta-Antonidas)
+## X-Discord: https://discord.gg/xeyHu7DdC
 ## Version: 0.1.0
 ## IconTexture: Interface\Icons\Trade_BlackSmithing
 

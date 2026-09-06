@@ -3,7 +3,8 @@
 ## Title: Warband Forge |cff8080ff[Price Sync]|r
 ## Notes: Reads auction house scan data from an installed price addon and adds profitability to recipes.
 ## Notes-deDE: Liest Auktionshaus-Preise aus einem vorhandenen Preis-Addon und rechnet die Rentabilitaet je Rezept aus.
-## Author: Basti2405
+## Author: Euta (euta-Antonidas)
+## X-Discord: https://discord.gg/xeyHu7DdC
 ## Version: 0.1.0
 ## IconTexture: Interface\Icons\INV_Misc_Coin_01
 

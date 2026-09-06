@@ -3,7 +3,8 @@
 ## Title: Warband Forge |cff8080ff[Work Orders]|r
 ## Notes: Dashboard for guild and personal crafting orders, with material shortfall and shopping list.
 ## Notes-deDE: Uebersicht ueber Gilden- und persoenliche Handwerksauftraege, mit Materialdefizit und Einkaufsliste.
-## Author: Basti2405
+## Author: Euta (euta-Antonidas)
+## X-Discord: https://discord.gg/xeyHu7DdC
 ## Version: 0.1.0
 ## IconTexture: Interface\Icons\INV_Scroll_11
 
